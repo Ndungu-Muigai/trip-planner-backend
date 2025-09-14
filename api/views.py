@@ -10,7 +10,6 @@ class PlanTripView(APIView):
     def post(self, request, *args, **kwargs):
         try:
             data = request.data
-            print("Incoming data:", data)  # Debugging
 
             # Validate required fields
             if not all(k in data for k in ["current_location", "pickup_location", "dropoff_location", "cycle_used"]):
@@ -36,8 +35,8 @@ class PlanTripView(APIView):
             return Response({"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 
-class GeocodeView(APIView):
-    """Proxy endpoint for ORS geocode autocomplete"""
+class SearchLocations(APIView):
+    """Proxy endpoint for getting the locations as searched by the user"""
     def get(self, request, *args, **kwargs):
         query = request.query_params.get("text")
         if not query:
@@ -47,6 +46,7 @@ class GeocodeView(APIView):
             url = "https://api.openrouteservice.org/geocode/autocomplete"
             params = {"api_key": settings.ORS_API_KEY, "text": query}
             resp = requests.get(url, params=params)
+            print(resp.json())
 
             return Response(resp.json(), status=resp.status_code)
 
