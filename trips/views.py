@@ -9,22 +9,6 @@ from .serializers import TripSerializer
 import polyline
 
 # Constants
-MAX_DRIVING_HOURS = 11  # max driving per day
-REST_AFTER_HOURS = 8    # mandatory break
-NON_DRIVING_HOURS = 3   # pickup, dropoff, fueling, inspections
-FUEL_INTERVAL_MILES = 1000  # fuel stop every 1000 miles
-
-class TripViewSet(viewsets.ModelViewSet):
-    queryset = Trip.objects.all()
-    serializer_class = TripSerializer
-    permission_classes = [permissions.AllowAny]
-
-    def get_queryset(self):
-        return Trip.objects.filter(user=self.request.user)
-
-
-
-# Constants
 MAX_DRIVING_HOURS = 11       # max driving per day
 REST_AFTER_HOURS = 8         # mandatory break
 NON_DRIVING_HOURS = 3        # pickup, dropoff, fueling, inspections
@@ -36,7 +20,7 @@ class TripViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.AllowAny]
 
     def get_queryset(self):
-        return Trip.objects.filter(user=self.request.user)
+        return Trip.objects.all()
 
     def perform_create(self, serializer):
         trip = serializer.save()
