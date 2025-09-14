@@ -46,7 +46,6 @@ class SearchLocations(APIView):
             url = "https://api.openrouteservice.org/geocode/autocomplete"
             params = {"api_key": settings.ORS_API_KEY, "text": query}
             resp = requests.get(url, params=params)
-            print(resp.json())
 
             return Response(resp.json(), status=resp.status_code)
 
