@@ -2,7 +2,7 @@
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "tripplanner/wsgi.py"
+      "dest": "api/wsgi.py"
     }
   ]
 }
