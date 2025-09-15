@@ -69,7 +69,7 @@ MIDDLEWARE = [
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
-    'https://smart-routes.vercel.app/'
+    'https://smart-routes.vercel.app'
 ]
 
 
